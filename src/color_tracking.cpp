@@ -18,14 +18,17 @@ cvCvtColor(img, imgHSV, CV_BGR2HSV);
 IplImage* imgThreshed = cvCreateImage(cvGetSize(img), 8, 1);
 
 // Values 20,100,100 to 30,255,255 working perfect for yellow at around 6pm
-//cvInRangeS(imgHSV, cvScalar(20, 100, 100), cvScalar(30, 255, 255), imgThreshed);
+// cvInRangeS(imgHSV, cvScalar(20, 100, 100), cvScalar(30, 255, 255), imgThreshed);
 
 // Red
-cvInRangeS(imgHSV, cvScalar(170, 160, 60), cvScalar(180, 255, 255), imgThreshed);
+// cvInRangeS(imgHSV, cvScalar(170, 160, 60), cvScalar(180, 255, 255), imgThreshed);
 
 
 // Blue
 // cvInRangeS(imgHSV, cvScalar(104, 178, 70), cvScalar(130, 240, 124), imgThreshed);
+
+// Green
+cvInRangeS(imgHSV, cvScalar(53, 74, 160), cvScalar(90, 147, 255), imgThreshed);
 
 cvReleaseImage(&imgHSV);
 
@@ -101,11 +104,11 @@ int main()
         // Print it out for debugging purposes
         printf("position (%d,%d)\n", posX, posY);
 
-        if (posX > 0 && posY > 0) {
+        // if (posX > 0 && posY > 0) {
             data.position[0] = posX;
             data.position[1] = posY;        
             lcm.publish("target_position", &data);
-        }
+        // }
 
         // We want to draw a line only if its a valid position
         if(lastX>0 && lastY>0 && posX>0 && posY>0)

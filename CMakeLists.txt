@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.8)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+include_directories("${PROJECT_SOURCE_DIR}/include/")
+add_executable(color_tracking src/color_tracking.cpp)
+find_package( OpenCV REQUIRED )
+target_link_libraries( color_tracking ${OpenCV_LIBS} lcm)
